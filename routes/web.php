@@ -15,7 +15,23 @@ use App\Http\Controllers\ListingController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// index
 Route::get('/', [ListingController::class, 'index']);
-// Route Modal Binding
+// Create new Gig
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Storing data to db
+Route::post('/listings', [ListingController::class, 'store']);
+
+
+
+
+
+
+
+
+
+
+
+// Route Modal Binding -- Show Single -- Must be put at the bottom 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
