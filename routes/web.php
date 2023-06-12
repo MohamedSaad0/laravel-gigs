@@ -21,10 +21,11 @@ Route::get('/', function () {
         'listings' => Listing::all()
     ]);
 });
-
-Route::get('/listings/{id}', function($id) {
-    return view('listing', [
-        'listing' => Listing::find($id)
+// Route Modal Binding
+Route::get('/listings/{listing}', function(Listing $listing) {
+    return view ('listing', [
+        'listing' => $listing
     ]);
+
 });
 
