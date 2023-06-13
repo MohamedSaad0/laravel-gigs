@@ -12,7 +12,7 @@ class ListingController extends Controller
     public function index() {
         // dd(request()->tag);
         return view('listings/index ',[
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
     ]);
 }
 
@@ -32,13 +32,13 @@ public function show(Listing $listing) {
             "title" => 'required',
             "company" => ['required', Rule::unique('listings', 'company')],
             "description" => "required",
-            "location" => "required",
+            "locations" => "required",
             "email" => ["required","email"],
             "website" => "required",
             "tags" => "required"
         ]);
 
         Listing::create($formValues);
-        return redirect('/');
+        return redirect('/')->with('message', 'Listing was successfully created');
     }
 }
