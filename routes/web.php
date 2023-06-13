@@ -3,6 +3,7 @@
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
 
 /*
@@ -34,7 +35,15 @@ Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
 // Delete
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+// User Routes
+// Register route
+Route::get('/register', [UserController::class, 'create']);
 
+// Store us
+Route::post('/users', [UserController::class, 'store']);
+
+// Login
+Route::get('/login', [UserController::class, 'login']);
 
 // Route Modal Binding -- Show Single -- Must be put at the bottom 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
