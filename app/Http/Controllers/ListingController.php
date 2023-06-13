@@ -38,7 +38,6 @@ public function show(Listing $listing) {
             "email" => ["required","email"],
             "website" => "required",
             "tags" => "required",
-
         ]);
 
         // Check if the request has an image and storing it to a new folder logos
@@ -47,5 +46,35 @@ public function show(Listing $listing) {
         }
         Listing::create($formValues);
         return redirect('/')->with('message', 'Listing was successfully created');
+    }
+
+    // Load Edit form
+    public function edit(Listing $listing) {
+        return view('listings/edit', ['listing' => $listing]);
+    }
+
+    // Update Data
+    public function update(Request $request, Listing $listing) {
+        $updatedValues = $request->validate([
+            "title" => 'required',
+            "company" => ['required'],
+            "description" => "required",
+            "locations" => "required",
+            "email" => ["required","email"],
+            "website" => "required",
+            "tags" => "required",
+        ]);
+
+        if($request->hasFile('logo')){
+            $updatedValues['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+        $listing->update($updatedValues);
+        return back()->with('message', 'Listing was successfully updated');
+    }
+
+    // Delete function
+    public function destroy(Listing $listing) {
+        $listing->delete();
+        return redirect('/')->with('message', 'Listing was successfully deleted');
     }
 }

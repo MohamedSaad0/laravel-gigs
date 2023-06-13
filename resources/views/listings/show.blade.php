@@ -66,6 +66,21 @@
                         </div>
                     </div>
                 </x-card>
+
+                <x-card class="mt-4 p-2 flex space-x-6 center">
+                    <a href="/listings/{{$listing->id}}/edit">
+                    <i class="fa-solid fa-pencil"> Edit</i>
+                    </a>
+
+                    <form method="POST" action="/listings/{{$listing->id}}">
+                        @csrf
+                        @method('delete')
+                        <button class="text-red-500">
+                            <i class="fa-solid fa-trash"></i>
+                            Delete
+                        </button>
+                    </form>
+                </x-card>  
             </div>
 
 @endsection

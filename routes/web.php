@@ -23,14 +23,17 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 // Storing data to db
 Route::post('/listings', [ListingController::class, 'store']);
 
+// Show route form
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
 
 
+// Update Data after edit 
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
 
-
-
-
+// Delete
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 
 
 // Route Modal Binding -- Show Single -- Must be put at the bottom 
