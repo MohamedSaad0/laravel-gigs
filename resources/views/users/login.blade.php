@@ -9,7 +9,8 @@
     <p class="mb-4">Log in to post gigs</p>
 </header>
 
-<form action="">
+<form method="POST" action="/users/authenticate">
+    @csrf
     <div class="mb-6">
         <label for="email" class="inline-block text-lg mb-2"
             >Email</label
@@ -18,7 +19,13 @@
             type="email"
             class="border border-gray-200 rounded p-2 w-full"
             name="email"
-        />
+            value="{{old('email')}}"
+            />
+            @error('email')
+            <p class="tex-red-500 text-cs mt-1">
+                {{$message}}
+            </p>
+            @enderror
     </div>
 
     <div class="mb-6">
@@ -47,7 +54,7 @@
     <div class="mt-8">
         <p>
             Don't have an account?
-            <a href="register.html" class="text-laravel"
+            <a href="/register" class="text-laravel"
                 >Register</a
             >
         </p>

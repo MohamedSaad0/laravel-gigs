@@ -16,4 +16,3 @@
     {{$listings->links()}}
 </div>
 @endsection
-{{-- INVOICE_REPORT_FINAL_V_m --}}

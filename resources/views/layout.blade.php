@@ -13,7 +13,9 @@
             referrerpolicy="no-referrer"
         />
         <script src="//unpkg.com/alpinejs" defer></script>
-
+{{-- <script>
+   var current_user=@json($current_user);
+</script> --}}
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
             tailwind.config = {
@@ -34,7 +36,7 @@
                 ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"
             /></a>
             <ul class="flex space-x-6 mr-6 text-lg">
-                @auth()
+                @auth
                 <li>
                     <span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
                 </li>
@@ -43,6 +45,14 @@
                         ><i class="fa-solid fa-gear "></i>
                         Manage Listings</a
                     >
+                </li>
+                <li>
+                    <form  method="POST" action="/logout">
+                        @csrf
+                        <button>
+                            <i class="fa-solid fa-door-closed"></i> Logout
+                        </button>
+                    </form>
                 </li>
                 @else
                 <li>
@@ -60,6 +70,9 @@
             </ul>
         </nav>
         <main>
+            {{-- @global_var
+            {{$current_user->name}}
+            @endglobal_var --}}
             @yield('hero')
             @yield('content')
         </main>
