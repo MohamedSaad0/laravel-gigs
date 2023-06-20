@@ -13,7 +13,7 @@
                         <img
                             class="w-48 mr-6 mb-6"
                             src="{{$listing->logo ? asset('storage/'.$listing->logo) : asset('images/logo.png')}}"
-                            alt=""
+                            alt="" 
                         />
 
                         <h3 class="text-2xl mb-2">{{$listing->title}}</h3>
@@ -22,7 +22,7 @@
 
 
                         <div class="text-lg my-4">
-                            <i class="fa-solid fa-location-dot"></i> {{$listing->location}}
+                            <i class="fa-solid fa-location-dot"></i> {{$listing->locations}}
                         </div>
                         <div class="border border-gray-200 w-full mb-6"></div>
                         <div>
@@ -66,21 +66,6 @@
                         </div>
                     </div>
                 </x-card>
-
-                <x-card class="mt-4 p-2 flex space-x-6 center">
-                    <a href="/listings/{{$listing->id}}/edit">
-                    <i class="fa-solid fa-pencil"> Edit</i>
-                    </a>
-
-                    <form method="POST" action="/listings/{{$listing->id}}">
-                        @csrf
-                        @method('delete')
-                        <button class="text-red-500">
-                            <i class="fa-solid fa-trash"></i>
-                            Delete
-                        </button>
-                    </form>
-                </x-card>  
             </div>
 
 @endsection
